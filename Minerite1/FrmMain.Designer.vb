@@ -24,18 +24,18 @@ Partial Class FrmMain
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
         Me.BtnAdd = New System.Windows.Forms.Button()
-        Me.Button2 = New System.Windows.Forms.Button()
-        Me.Button3 = New System.Windows.Forms.Button()
-        Me.DataGridView1 = New System.Windows.Forms.DataGridView()
-        Me.Un1BindingSource = New System.Windows.Forms.BindingSource(Me.components)
-        Me.DataDataSet = New Minerite1.dataDataSet()
-        Me.Un1TableAdapter = New Minerite1.dataDataSetTableAdapters.Un1TableAdapter()
+        Me.BtnEdit = New System.Windows.Forms.Button()
+        Me.BtnDelete = New System.Windows.Forms.Button()
+        Me.DgvDataSheet = New System.Windows.Forms.DataGridView()
         Me.IdDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.CDinchDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.DVftDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.CDmmDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.DVmDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.Un1BindingSource = New System.Windows.Forms.BindingSource(Me.components)
+        Me.DataDataSet = New Minerite1.dataDataSet()
+        Me.Un1TableAdapter = New Minerite1.dataDataSetTableAdapters.Un1TableAdapter()
+        CType(Me.DgvDataSheet, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.Un1BindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DataDataSet, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
@@ -49,54 +49,44 @@ Partial Class FrmMain
         Me.BtnAdd.Text = "ADD"
         Me.BtnAdd.UseVisualStyleBackColor = True
         '
-        'Button2
+        'BtnEdit
         '
-        Me.Button2.Location = New System.Drawing.Point(12, 58)
-        Me.Button2.Name = "Button2"
-        Me.Button2.Size = New System.Drawing.Size(75, 23)
-        Me.Button2.TabIndex = 1
-        Me.Button2.Text = "EDIT"
-        Me.Button2.UseVisualStyleBackColor = True
+        Me.BtnEdit.Location = New System.Drawing.Point(12, 58)
+        Me.BtnEdit.Name = "BtnEdit"
+        Me.BtnEdit.Size = New System.Drawing.Size(75, 23)
+        Me.BtnEdit.TabIndex = 1
+        Me.BtnEdit.Text = "EDIT"
+        Me.BtnEdit.UseVisualStyleBackColor = True
         '
-        'Button3
+        'BtnDelete
         '
-        Me.Button3.Location = New System.Drawing.Point(12, 109)
-        Me.Button3.Name = "Button3"
-        Me.Button3.Size = New System.Drawing.Size(75, 23)
-        Me.Button3.TabIndex = 2
-        Me.Button3.Text = "DELETE"
-        Me.Button3.UseVisualStyleBackColor = True
+        Me.BtnDelete.Location = New System.Drawing.Point(12, 109)
+        Me.BtnDelete.Name = "BtnDelete"
+        Me.BtnDelete.Size = New System.Drawing.Size(75, 23)
+        Me.BtnDelete.TabIndex = 2
+        Me.BtnDelete.Text = "DELETE"
+        Me.BtnDelete.UseVisualStyleBackColor = True
         '
-        'DataGridView1
+        'DgvDataSheet
         '
-        Me.DataGridView1.AllowUserToAddRows = False
-        Me.DataGridView1.AllowUserToDeleteRows = False
-        Me.DataGridView1.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+        Me.DgvDataSheet.AllowUserToAddRows = False
+        Me.DgvDataSheet.AllowUserToDeleteRows = False
+        Me.DgvDataSheet.AllowUserToResizeRows = False
+        Me.DgvDataSheet.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
             Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.DataGridView1.AutoGenerateColumns = False
-        Me.DataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.DataGridView1.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.IdDataGridViewTextBoxColumn, Me.CDinchDataGridViewTextBoxColumn, Me.DVftDataGridViewTextBoxColumn, Me.CDmmDataGridViewTextBoxColumn, Me.DVmDataGridViewTextBoxColumn})
-        Me.DataGridView1.DataSource = Me.Un1BindingSource
-        Me.DataGridView1.Location = New System.Drawing.Point(94, 13)
-        Me.DataGridView1.Name = "DataGridView1"
-        Me.DataGridView1.ReadOnly = True
-        Me.DataGridView1.Size = New System.Drawing.Size(577, 335)
-        Me.DataGridView1.TabIndex = 3
-        '
-        'Un1BindingSource
-        '
-        Me.Un1BindingSource.DataMember = "Un1"
-        Me.Un1BindingSource.DataSource = Me.DataDataSet
-        '
-        'DataDataSet
-        '
-        Me.DataDataSet.DataSetName = "dataDataSet"
-        Me.DataDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema
-        '
-        'Un1TableAdapter
-        '
-        Me.Un1TableAdapter.ClearBeforeFill = True
+        Me.DgvDataSheet.AutoGenerateColumns = False
+        Me.DgvDataSheet.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.DgvDataSheet.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.IdDataGridViewTextBoxColumn, Me.CDinchDataGridViewTextBoxColumn, Me.DVftDataGridViewTextBoxColumn, Me.CDmmDataGridViewTextBoxColumn, Me.DVmDataGridViewTextBoxColumn})
+        Me.DgvDataSheet.DataSource = Me.Un1BindingSource
+        Me.DgvDataSheet.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically
+        Me.DgvDataSheet.Location = New System.Drawing.Point(94, 13)
+        Me.DgvDataSheet.MultiSelect = False
+        Me.DgvDataSheet.Name = "DgvDataSheet"
+        Me.DgvDataSheet.ReadOnly = True
+        Me.DgvDataSheet.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
+        Me.DgvDataSheet.Size = New System.Drawing.Size(577, 335)
+        Me.DgvDataSheet.TabIndex = 3
         '
         'IdDataGridViewTextBoxColumn
         '
@@ -135,18 +125,32 @@ Partial Class FrmMain
         Me.DVmDataGridViewTextBoxColumn.Name = "DVmDataGridViewTextBoxColumn"
         Me.DVmDataGridViewTextBoxColumn.ReadOnly = True
         '
+        'Un1BindingSource
+        '
+        Me.Un1BindingSource.DataMember = "Un1"
+        Me.Un1BindingSource.DataSource = Me.DataDataSet
+        '
+        'DataDataSet
+        '
+        Me.DataDataSet.DataSetName = "dataDataSet"
+        Me.DataDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema
+        '
+        'Un1TableAdapter
+        '
+        Me.Un1TableAdapter.ClearBeforeFill = True
+        '
         'FrmMain
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(683, 360)
-        Me.Controls.Add(Me.DataGridView1)
-        Me.Controls.Add(Me.Button3)
-        Me.Controls.Add(Me.Button2)
+        Me.Controls.Add(Me.DgvDataSheet)
+        Me.Controls.Add(Me.BtnDelete)
+        Me.Controls.Add(Me.BtnEdit)
         Me.Controls.Add(Me.BtnAdd)
         Me.Name = "FrmMain"
         Me.Text = "Minerite1"
-        CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DgvDataSheet, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.Un1BindingSource, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DataDataSet, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
@@ -154,11 +158,11 @@ Partial Class FrmMain
     End Sub
 
     Friend WithEvents BtnAdd As Button
-    Friend WithEvents Button2 As Button
-    Friend WithEvents Button3 As Button
+    Friend WithEvents BtnEdit As Button
+    Friend WithEvents BtnDelete As Button
     Friend WithEvents CartridgeDiameterDataGridViewTextBoxColumn As DataGridViewTextBoxColumn
     Friend WithEvents DetonationVelocityDataGridViewTextBoxColumn As DataGridViewTextBoxColumn
-    Friend WithEvents DataGridView1 As DataGridView
+    Friend WithEvents DgvDataSheet As DataGridView
     Friend WithEvents DataDataSet As dataDataSet
     Friend WithEvents Un1BindingSource As BindingSource
     Friend WithEvents Un1TableAdapter As dataDataSetTableAdapters.Un1TableAdapter

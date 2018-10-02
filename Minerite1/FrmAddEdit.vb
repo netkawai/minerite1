@@ -1,6 +1,35 @@
 ﻿Public Class FrmAddEdit
 
-    Dim UpdateRecordID As Integer = 0
+    Private _selectedRecordID As Integer = 0
+    Private ParentMain As FrmMain = Me.ParentForm
+
+    Public Property SelectedRecordID As Integer
+        Get
+            Return _selectedRecordID
+        End Get
+        Private Set(value As Integer)
+            _selectedRecordID = value
+        End Set
+    End Property
+
+
+
+    Public Sub New(ByVal selectedId As Integer)
+
+        ' This call is required by the designer.
+        InitializeComponent()
+
+        SelectedRecordID = selectedId
+
+        ' To open this form with selected row, that is Edit mode
+        If selectedId > 0 Then
+            If Me.CmbUnit.SelectedText.ToUpper = "INCH" Then
+                TbInput.Text = Me.ParentMain.DiameterInch
+            Else
+                TbInput.Text = Me.ParentMain.DiameterMM
+            End If
+        End If
+    End Sub
 
     Private Sub BtnUpdate_Click(sender As Object, e As EventArgs) Handles BtnUpdate.Click
 
@@ -33,12 +62,16 @@
             End If
 
             ' Call to save data
-            Dim parent As FrmMain = Me.ParentForm
-            If UpdateRecordID = 0 Then
-                parent.Un1TableAdapter.Insert(diameter_inch, velocity_ft, diameter_mm, velocity_m)
+            Dim tableAdapter = ParentMain.Un1TableAdapter
+            If SelectedRecordID = 0 Then
+                ' With Output clause in Query, this Insert return the new inserted Id
+                SelectedRecordID = tableAdapter.Insert(diameter_inch, velocity_ft, diameter_mm, velocity_m)
             Else
-                parent.Un1TableAdapter.Update(diameter_inch, velocity_ft, diameter_mm, velocity_m, UpdateRecordID)
+                tableAdapter.Update(diameter_inch, velocity_ft, diameter_mm, velocity_m, Me.SelectedRecordID)
             End If
+
+            ' Refill the updated data
+            tableAdapter.Fill(ParentMain.DataDataSet.Un1)
 
         Catch ex As ArgumentException
         Catch ex As FormatException
@@ -51,7 +84,13 @@
         End Try
     End Sub
 
+    ''' <summary>
+    ''' Calculation of Detonation Velocity
+    ''' </summary>
+    ''' <param name="diameter"></param>
+    ''' <returns></returns>
     Private Function Calculate_Velocity(diameter As Double) As Double
+        ' Formular constatns (to follow pdf)
         Const consA As Double = 5981.326
         Const consB As Double = 2833.804
         Const consC As Double = -556.407
