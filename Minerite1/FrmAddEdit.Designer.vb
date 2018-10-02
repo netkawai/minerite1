@@ -26,7 +26,7 @@ Partial Class FrmAddEdit
         Me.CmbUnit = New System.Windows.Forms.ComboBox()
         Me.BtnAdd = New System.Windows.Forms.Button()
         Me.BtnCancel = New System.Windows.Forms.Button()
-        Me.TextBox1 = New System.Windows.Forms.TextBox()
+        Me.TbInput = New System.Windows.Forms.TextBox()
         Me.SuspendLayout()
         '
         'Label1
@@ -41,6 +41,7 @@ Partial Class FrmAddEdit
         'CmbUnit
         '
         Me.CmbUnit.FormattingEnabled = True
+        Me.CmbUnit.Items.AddRange(New Object() {"Inch", "mm"})
         Me.CmbUnit.Location = New System.Drawing.Point(143, 21)
         Me.CmbUnit.Name = "CmbUnit"
         Me.CmbUnit.Size = New System.Drawing.Size(102, 21)
@@ -64,19 +65,19 @@ Partial Class FrmAddEdit
         Me.BtnCancel.Text = "Cancel"
         Me.BtnCancel.UseVisualStyleBackColor = True
         '
-        'TextBox1
+        'TbInput
         '
-        Me.TextBox1.Location = New System.Drawing.Point(60, 68)
-        Me.TextBox1.Name = "TextBox1"
-        Me.TextBox1.Size = New System.Drawing.Size(167, 20)
-        Me.TextBox1.TabIndex = 4
+        Me.TbInput.Location = New System.Drawing.Point(60, 68)
+        Me.TbInput.Name = "TbInput"
+        Me.TbInput.Size = New System.Drawing.Size(167, 20)
+        Me.TbInput.TabIndex = 4
         '
         'FrmAddEdit
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(280, 178)
-        Me.Controls.Add(Me.TextBox1)
+        Me.Controls.Add(Me.TbInput)
         Me.Controls.Add(Me.BtnCancel)
         Me.Controls.Add(Me.BtnAdd)
         Me.Controls.Add(Me.CmbUnit)
@@ -92,5 +93,5 @@ Partial Class FrmAddEdit
     Friend WithEvents CmbUnit As ComboBox
     Friend WithEvents BtnAdd As Button
     Friend WithEvents BtnCancel As Button
-    Friend WithEvents TextBox1 As TextBox
+    Friend WithEvents TbInput As TextBox
 End Class
