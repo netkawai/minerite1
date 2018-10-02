@@ -24,7 +24,7 @@ Partial Class FrmAddEdit
     Private Sub InitializeComponent()
         Me.Label1 = New System.Windows.Forms.Label()
         Me.CmbUnit = New System.Windows.Forms.ComboBox()
-        Me.BtnAdd = New System.Windows.Forms.Button()
+        Me.BtnUpdate = New System.Windows.Forms.Button()
         Me.BtnCancel = New System.Windows.Forms.Button()
         Me.TbInput = New System.Windows.Forms.TextBox()
         Me.SuspendLayout()
@@ -47,14 +47,14 @@ Partial Class FrmAddEdit
         Me.CmbUnit.Size = New System.Drawing.Size(102, 21)
         Me.CmbUnit.TabIndex = 1
         '
-        'BtnAdd
+        'BtnUpdate
         '
-        Me.BtnAdd.Location = New System.Drawing.Point(55, 127)
-        Me.BtnAdd.Name = "BtnAdd"
-        Me.BtnAdd.Size = New System.Drawing.Size(75, 23)
-        Me.BtnAdd.TabIndex = 2
-        Me.BtnAdd.Text = "Add"
-        Me.BtnAdd.UseVisualStyleBackColor = True
+        Me.BtnUpdate.Location = New System.Drawing.Point(55, 127)
+        Me.BtnUpdate.Name = "BtnUpdate"
+        Me.BtnUpdate.Size = New System.Drawing.Size(75, 23)
+        Me.BtnUpdate.TabIndex = 2
+        Me.BtnUpdate.Text = "Update"
+        Me.BtnUpdate.UseVisualStyleBackColor = True
         '
         'BtnCancel
         '
@@ -79,7 +79,7 @@ Partial Class FrmAddEdit
         Me.ClientSize = New System.Drawing.Size(280, 178)
         Me.Controls.Add(Me.TbInput)
         Me.Controls.Add(Me.BtnCancel)
-        Me.Controls.Add(Me.BtnAdd)
+        Me.Controls.Add(Me.BtnUpdate)
         Me.Controls.Add(Me.CmbUnit)
         Me.Controls.Add(Me.Label1)
         Me.Name = "FrmAddEdit"
@@ -91,7 +91,7 @@ Partial Class FrmAddEdit
 
     Friend WithEvents Label1 As Label
     Friend WithEvents CmbUnit As ComboBox
-    Friend WithEvents BtnAdd As Button
+    Friend WithEvents BtnUpdate As Button
     Friend WithEvents BtnCancel As Button
     Friend WithEvents TbInput As TextBox
 End Class

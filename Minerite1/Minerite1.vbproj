@@ -100,6 +100,9 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>dataDataSet.xsd</DependentUpon>
     </Compile>
+    <Compile Include="dataDataSet.vb">
+      <DependentUpon>dataDataSet.xsd</DependentUpon>
+    </Compile>
     <Compile Include="FrmAddEdit.Designer.vb">
       <DependentUpon>FrmAddEdit.vb</DependentUpon>
     </Compile>
