@@ -1,15 +1,16 @@
 ﻿Public Class FrmAddEdit
 
-    Private FrmMain As FrmMain
-    Private SelectedRecordID As Integer
-
-    Private Enum LengthUnit
+    Public Enum LengthUnit
         INCH
         MM
     End Enum
 
-    ' TODO: Add an Event Handler to switch inch and mm
-    ' If there is a value in textbox, value should be automatically calculated
+    Const Inch_mm_ratio As Double = 25.4
+    Const Foot_m_ratio As Double = 0.305
+
+
+    Private FrmMain As FrmMain
+    Private SelectedRecordID As Integer
 
     ''' <summary>
     ''' 
@@ -19,12 +20,13 @@
 
         ' This call is required by the designer.
         InitializeComponent()
-        CmbUnit.SelectedIndex = 0
         SelectedRecordID = selectedId
     End Sub
 
     Private Sub FrmAddEdit_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         FrmMain = Me.Owner
+        Me.SelectedUnit = FrmMain.SelectedUnit
+
         ' To open this form with selected row, that is Edit mode
         If SelectedRecordID > 0 Then
             If Me.SelectedUnit = LengthUnit.INCH Then
@@ -37,19 +39,28 @@
         Me.TbInput.Focus()
     End Sub
 
-    Private Function SelectedUnit() As LengthUnit
-        If Me.CmbUnit.SelectedItem.ToUpper = "INCH" Then
-            Return LengthUnit.INCH
-        Else
-            Return LengthUnit.MM
-        End If
-    End Function
+    Private Property SelectedUnit() As LengthUnit
+        Get
+            If Me.CmbUnit.SelectedItem.ToUpper = "INCH" Then
+                Return LengthUnit.INCH
+            Else
+                Return LengthUnit.MM
+            End If
+        End Get
+
+        Set(value As LengthUnit)
+            If value = LengthUnit.INCH Then
+                Me.CmbUnit.SelectedIndex = 0
+            Else
+                Me.CmbUnit.SelectedIndex = 1
+            End If
+        End Set
+    End Property
+
 
 
     Private Sub BtnUpdate_Click(sender As Object, e As EventArgs) Handles BtnUpdate.Click
 
-        Const Inch_mm_ratio As Double = 25.4
-        Const foot_m_ratio As Double = 0.305
 
         ' Validating input only positive numbers.
         ' Calculating detonation velocity
@@ -70,12 +81,12 @@
                 diameter_inch = diameter
                 diameter_mm = diameter_inch * Inch_mm_ratio
                 velocity_ft = velocity
-                velocity_m = velocity_ft * foot_m_ratio
+                velocity_m = velocity_ft * Foot_m_ratio
             Else
                 diameter_mm = diameter
                 diameter_inch = diameter_mm / Inch_mm_ratio
                 velocity_m = velocity
-                velocity_ft = velocity_m / foot_m_ratio
+                velocity_ft = velocity_m / Foot_m_ratio
             End If
 
             ' Call to save data
@@ -122,5 +133,29 @@
 
     Private Sub BtnCancel_Click(sender As Object, e As EventArgs) Handles BtnCancel.Click
         Me.Close()
+    End Sub
+
+
+    ''' <summary>
+    ''' If there is a value in textbox, value should be automatically calculated
+    ''' </summary>
+    ''' <param name="sender"></param>
+    ''' <param name="e"></param>
+    Private Sub CmbUnit_SelectedIndexChanged(sender As Object, e As EventArgs) Handles CmbUnit.SelectedIndexChanged
+        FrmMain.SelectedUnit = Me.SelectedUnit
+        Try
+            Dim diameter As Double = Double.Parse(Me.TbInput.Text)
+            If diameter < 0 Then
+                Throw New FormatException
+            End If
+
+            If CmbUnit.SelectedIndex = 0 Then
+                TbInput.Text = diameter / Inch_mm_ratio
+            Else
+                TbInput.Text = diameter * Inch_mm_ratio
+            End If
+        Catch ex1 As Exception
+            ' If format is not correct, do nothing
+        End Try
     End Sub
 End Class

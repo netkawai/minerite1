@@ -1,6 +1,7 @@
 ﻿Public Class FrmMain
 
     Private SelectedId As Integer = 0
+    Public SelectedUnit As FrmAddEdit.LengthUnit = FrmAddEdit.LengthUnit.INCH
 
     Private _diameterInch As Double = 0
     Private _diameterMM As Double = 0

@@ -128,32 +128,33 @@ Partial Class FrmMain
         Me.IdDataGridViewTextBoxColumn.HeaderText = "Id"
         Me.IdDataGridViewTextBoxColumn.Name = "IdDataGridViewTextBoxColumn"
         Me.IdDataGridViewTextBoxColumn.ReadOnly = True
+        Me.IdDataGridViewTextBoxColumn.Visible = False
         '
         'CDinchDataGridViewTextBoxColumn
         '
         Me.CDinchDataGridViewTextBoxColumn.DataPropertyName = "CD_inch"
-        Me.CDinchDataGridViewTextBoxColumn.HeaderText = "CD_inch"
+        Me.CDinchDataGridViewTextBoxColumn.HeaderText = "Cartridge Diameter(inch)"
         Me.CDinchDataGridViewTextBoxColumn.Name = "CDinchDataGridViewTextBoxColumn"
         Me.CDinchDataGridViewTextBoxColumn.ReadOnly = True
         '
         'DVftDataGridViewTextBoxColumn
         '
         Me.DVftDataGridViewTextBoxColumn.DataPropertyName = "DV_ft"
-        Me.DVftDataGridViewTextBoxColumn.HeaderText = "DV_ft"
+        Me.DVftDataGridViewTextBoxColumn.HeaderText = "Detonation Velocity(ft/sec)"
         Me.DVftDataGridViewTextBoxColumn.Name = "DVftDataGridViewTextBoxColumn"
         Me.DVftDataGridViewTextBoxColumn.ReadOnly = True
         '
         'CDmmDataGridViewTextBoxColumn
         '
         Me.CDmmDataGridViewTextBoxColumn.DataPropertyName = "CD_mm"
-        Me.CDmmDataGridViewTextBoxColumn.HeaderText = "CD_mm"
+        Me.CDmmDataGridViewTextBoxColumn.HeaderText = "Cartridge Diameter(mm)"
         Me.CDmmDataGridViewTextBoxColumn.Name = "CDmmDataGridViewTextBoxColumn"
         Me.CDmmDataGridViewTextBoxColumn.ReadOnly = True
         '
         'DVmDataGridViewTextBoxColumn
         '
         Me.DVmDataGridViewTextBoxColumn.DataPropertyName = "DV_m"
-        Me.DVmDataGridViewTextBoxColumn.HeaderText = "DV_m"
+        Me.DVmDataGridViewTextBoxColumn.HeaderText = "Detonation Velocity(m/sec)"
         Me.DVmDataGridViewTextBoxColumn.Name = "DVmDataGridViewTextBoxColumn"
         Me.DVmDataGridViewTextBoxColumn.ReadOnly = True
         '
