@@ -1,23 +1,12 @@
 ﻿Public Class FrmAddEdit
 
-    Private _selectedRecordID As Integer = 0
     Private FrmMain As FrmMain
+    Private SelectedRecordID As Integer
 
     Private Enum LengthUnit
         INCH
         MM
     End Enum
-
-
-
-    Public Property SelectedRecordID As Integer
-        Get
-            Return _selectedRecordID
-        End Get
-        Private Set(value As Integer)
-            _selectedRecordID = value
-        End Set
-    End Property
 
     ' TODO: Add an Event Handler to switch inch and mm
     ' If there is a value in textbox, value should be automatically calculated
@@ -56,6 +45,7 @@
         End If
     End Function
 
+
     Private Sub BtnUpdate_Click(sender As Object, e As EventArgs) Handles BtnUpdate.Click
 
         Const Inch_mm_ratio As Double = 25.4
@@ -92,7 +82,7 @@
             Dim tableAdapter = FrmMain.Un1TableAdapter
             If SelectedRecordID = 0 Then
                 ' With Output clause in Query, this Insert return the new inserted Id
-                SelectedRecordID = tableAdapter.Insert(diameter_inch, velocity_ft, diameter_mm, velocity_m)
+                tableAdapter.Insert(diameter_inch, velocity_ft, diameter_mm, velocity_m, SelectedRecordID)
             Else
                 tableAdapter.Update(diameter_inch, velocity_ft, diameter_mm, velocity_m, Me.SelectedRecordID)
             End If
@@ -100,6 +90,9 @@
             ' Refill the updated data
             ' TODO: Maybe I can add sort clause in SELECT query
             FrmMain.RefillDataGridView()
+
+            ' Here jump to a new record line
+            FrmMain.SelectAndJumpEditedRecord(SelectedRecordID)
 
         Catch ex As ArgumentException
         Catch ex As FormatException

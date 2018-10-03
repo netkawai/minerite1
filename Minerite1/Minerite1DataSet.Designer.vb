@@ -846,8 +846,8 @@ Namespace Minerite1DataSetTableAdapters
             Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_Id", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "Id", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
             Me._adapter.InsertCommand = New Global.System.Data.SqlClient.SqlCommand()
             Me._adapter.InsertCommand.Connection = Me.Connection
-            Me._adapter.InsertCommand.CommandText = "INSERT INTO Un1"&Global.Microsoft.VisualBasic.ChrW(10)&"                         (CD_inch, DV_ft, CD_mm, DV_m)"&Global.Microsoft.VisualBasic.ChrW(10)&"OUTPUT    "& _ 
-                "   Inserted.Id"&Global.Microsoft.VisualBasic.ChrW(10)&"VALUES        (@CD_inch,@DV_ft,@CD_mm,@DV_m)"&Global.Microsoft.VisualBasic.ChrW(10)&Global.Microsoft.VisualBasic.ChrW(10)
+            Me._adapter.InsertCommand.CommandText = "INSERT INTO Un1" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "                         (CD_inch, DV_ft, CD_mm, DV_m)" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "OUTPUT  " &
+                "     Inserted.Id" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "VALUES        (@CD_inch,@DV_ft,@CD_mm,@DV_m)"
             Me._adapter.InsertCommand.CommandType = Global.System.Data.CommandType.Text
             Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@CD_inch", Global.System.Data.SqlDbType.Float, 8, Global.System.Data.ParameterDirection.Input, 0, 0, "CD_inch", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
             Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@DV_ft", Global.System.Data.SqlDbType.Int, 4, Global.System.Data.ParameterDirection.Input, 0, 0, "DV_ft", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))

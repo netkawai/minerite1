@@ -73,7 +73,6 @@
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="System.Net.Http" />
   </ItemGroup>
   <ItemGroup>
     <Import Include="Microsoft.VisualBasic" />
@@ -105,6 +104,9 @@
     <Compile Include="Minerite1DataSet.Designer.vb">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
+      <DependentUpon>Minerite1DataSet.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Minerite1DataSet.vb">
       <DependentUpon>Minerite1DataSet.xsd</DependentUpon>
     </Compile>
     <Compile Include="My Project\AssemblyInfo.vb" />
