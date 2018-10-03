@@ -29,6 +29,8 @@
     End Sub
 
     Private Sub RefillDataGridView()
+        ' TODO: Rename database file name to Minerite1
+        ' TODO: Rename dataDataSet name to  Minerite1DS
         Me.Un1TableAdapter.Fill(Me.DataDataSet.Un1)
     End Sub
 
@@ -54,7 +56,7 @@
     End Sub
 
     Private Sub BtnDelete_Click(sender As Object, e As EventArgs) Handles BtnDelete.Click
-        If MessageBox.Show("Delete the selected data") = DialogResult.OK Then
+        If MessageBox.Show("Are you sure to delete the selected data?") = DialogResult.OK Then
             ' Delete the row
             Me.Un1TableAdapter.Delete(Me.SelectedId)
             RefillDataGridView()

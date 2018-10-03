@@ -19,15 +19,19 @@
         End Set
     End Property
 
+    ' TODO: Add an Event Handler to switch inch and mm
+    ' If there is a value in textbox, value should be automatically calculated
 
-
+    ''' <summary>
+    ''' 
+    ''' </summary>
+    ''' <param name="selectedId"></param>
     Public Sub New(ByVal selectedId As Integer)
 
         ' This call is required by the designer.
         InitializeComponent()
         CmbUnit.SelectedIndex = 0
         SelectedRecordID = selectedId
-
     End Sub
 
     Private Sub FrmAddEdit_Load(sender As Object, e As EventArgs) Handles MyBase.Load
@@ -40,7 +44,8 @@
                 TbInput.Text = Me.FrmMain.DiameterMM
             End If
         End If
-
+        ' Set Focust on Textbox
+        Me.TbInput.Focus()
     End Sub
 
     Private Function SelectedUnit() As LengthUnit
@@ -69,6 +74,8 @@
 
             Dim diameter_inch, diameter_mm, velocity_ft, velocity_m
             ' cacluation other unit
+            ' TODO: In the document, it seems that 3 fractional digit
+            ' and round up 
             If Me.SelectedUnit = LengthUnit.INCH Then
                 diameter_inch = diameter
                 diameter_mm = diameter_inch * Inch_mm_ratio
@@ -91,6 +98,7 @@
             End If
 
             ' Refill the updated data
+            ' TODO: Maybe I can add sort clause in SELECT query
             tableAdapter.Fill(FrmMain.DataDataSet.Un1)
 
         Catch ex As ArgumentException
