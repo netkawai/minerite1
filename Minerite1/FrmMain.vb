@@ -30,7 +30,7 @@
         RefillDataGridView()
     End Sub
 
-    Private Sub RefillDataGridView()
+    Public Sub RefillDataGridView()
         ' TODO: Rename database file name to Minerite1
         ' TODO: Rename dataDataSet name to  Minerite1DS
         Me.Un1TableAdapter.Fill(Me.Minerite1DataSet.Un1)
@@ -93,6 +93,7 @@
             Dim selected As DataGridViewRow = DgvDataSheet.SelectedRows.Item(0)
 
             Me.SelectedId = selected.Cells.Item(0).Value
+            ' TODO: DON'T forget to remove below
             For Each cell As DataGridViewCell In selected.Cells
                 Debug.WriteLine(cell.Value)
             Next
@@ -106,5 +107,10 @@
             EnableEditDeleteBtn(False)
         End If
 
+    End Sub
+
+    Private Sub BtnPrint_Click(sender As Object, e As EventArgs) Handles BtnPrint.Click
+        Dim printHelper = New PrintoutHelper(Me.DgvDataSheet)
+        printHelper.PrintPreview()
     End Sub
 End Class

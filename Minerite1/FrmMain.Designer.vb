@@ -30,7 +30,9 @@ Partial Class FrmMain
         Me.Un1BindingSource = New System.Windows.Forms.BindingSource(Me.components)
         Me.Minerite1DataSet = New Minerite1.Minerite1DataSet()
         Me.Un1TableAdapter = New Minerite1.Minerite1DataSetTableAdapters.Un1TableAdapter()
-        Me.IdDataGridViewTextBoxColumn1 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.BtnPrint = New System.Windows.Forms.Button()
+        Me.BtnSave = New System.Windows.Forms.Button()
+        Me.IdDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.CDinchDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.DVftDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.CDmmDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
@@ -46,7 +48,7 @@ Partial Class FrmMain
         Me.BtnAdd.Name = "BtnAdd"
         Me.BtnAdd.Size = New System.Drawing.Size(75, 23)
         Me.BtnAdd.TabIndex = 0
-        Me.BtnAdd.Text = "ADD"
+        Me.BtnAdd.Text = "&ADD"
         Me.BtnAdd.UseVisualStyleBackColor = True
         '
         'BtnEdit
@@ -55,7 +57,7 @@ Partial Class FrmMain
         Me.BtnEdit.Name = "BtnEdit"
         Me.BtnEdit.Size = New System.Drawing.Size(75, 23)
         Me.BtnEdit.TabIndex = 1
-        Me.BtnEdit.Text = "EDIT"
+        Me.BtnEdit.Text = "&EDIT"
         Me.BtnEdit.UseVisualStyleBackColor = True
         '
         'BtnDelete
@@ -64,7 +66,7 @@ Partial Class FrmMain
         Me.BtnDelete.Name = "BtnDelete"
         Me.BtnDelete.Size = New System.Drawing.Size(75, 23)
         Me.BtnDelete.TabIndex = 2
-        Me.BtnDelete.Text = "DELETE"
+        Me.BtnDelete.Text = "&DELETE"
         Me.BtnDelete.UseVisualStyleBackColor = True
         '
         'DgvDataSheet
@@ -77,7 +79,7 @@ Partial Class FrmMain
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.DgvDataSheet.AutoGenerateColumns = False
         Me.DgvDataSheet.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.DgvDataSheet.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.IdDataGridViewTextBoxColumn1, Me.CDinchDataGridViewTextBoxColumn, Me.DVftDataGridViewTextBoxColumn, Me.CDmmDataGridViewTextBoxColumn, Me.DVmDataGridViewTextBoxColumn})
+        Me.DgvDataSheet.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.IdDataGridViewTextBoxColumn, Me.CDinchDataGridViewTextBoxColumn, Me.DVftDataGridViewTextBoxColumn, Me.CDmmDataGridViewTextBoxColumn, Me.DVmDataGridViewTextBoxColumn})
         Me.DgvDataSheet.DataSource = Me.Un1BindingSource
         Me.DgvDataSheet.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically
         Me.DgvDataSheet.Location = New System.Drawing.Point(94, 13)
@@ -102,13 +104,31 @@ Partial Class FrmMain
         '
         Me.Un1TableAdapter.ClearBeforeFill = True
         '
-        'IdDataGridViewTextBoxColumn1
+        'BtnPrint
         '
-        Me.IdDataGridViewTextBoxColumn1.DataPropertyName = "Id"
-        Me.IdDataGridViewTextBoxColumn1.HeaderText = "Id"
-        Me.IdDataGridViewTextBoxColumn1.Name = "IdDataGridViewTextBoxColumn1"
-        Me.IdDataGridViewTextBoxColumn1.ReadOnly = True
-        Me.IdDataGridViewTextBoxColumn1.Visible = False
+        Me.BtnPrint.Location = New System.Drawing.Point(12, 160)
+        Me.BtnPrint.Name = "BtnPrint"
+        Me.BtnPrint.Size = New System.Drawing.Size(75, 23)
+        Me.BtnPrint.TabIndex = 4
+        Me.BtnPrint.Text = "&PRINT..."
+        Me.BtnPrint.UseVisualStyleBackColor = True
+        '
+        'BtnSave
+        '
+        Me.BtnSave.Location = New System.Drawing.Point(13, 211)
+        Me.BtnSave.Name = "BtnSave"
+        Me.BtnSave.Size = New System.Drawing.Size(75, 23)
+        Me.BtnSave.TabIndex = 5
+        Me.BtnSave.Text = "&SAVE..."
+        Me.BtnSave.UseVisualStyleBackColor = True
+        '
+        'IdDataGridViewTextBoxColumn
+        '
+        Me.IdDataGridViewTextBoxColumn.DataPropertyName = "Id"
+        Me.IdDataGridViewTextBoxColumn.HeaderText = "Id"
+        Me.IdDataGridViewTextBoxColumn.Name = "IdDataGridViewTextBoxColumn"
+        Me.IdDataGridViewTextBoxColumn.ReadOnly = True
+        Me.IdDataGridViewTextBoxColumn.Visible = False
         '
         'CDinchDataGridViewTextBoxColumn
         '
@@ -143,6 +163,8 @@ Partial Class FrmMain
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(683, 360)
+        Me.Controls.Add(Me.BtnSave)
+        Me.Controls.Add(Me.BtnPrint)
         Me.Controls.Add(Me.DgvDataSheet)
         Me.Controls.Add(Me.BtnDelete)
         Me.Controls.Add(Me.BtnEdit)
@@ -165,7 +187,9 @@ Partial Class FrmMain
     Friend WithEvents Minerite1DataSet As Minerite1DataSet
     Friend WithEvents Un1BindingSource As BindingSource
     Friend WithEvents Un1TableAdapter As Minerite1DataSetTableAdapters.Un1TableAdapter
-    Friend WithEvents IdDataGridViewTextBoxColumn1 As DataGridViewTextBoxColumn
+    Friend WithEvents BtnPrint As Button
+    Friend WithEvents BtnSave As Button
+    Friend WithEvents IdDataGridViewTextBoxColumn As DataGridViewTextBoxColumn
     Friend WithEvents CDinchDataGridViewTextBoxColumn As DataGridViewTextBoxColumn
     Friend WithEvents DVftDataGridViewTextBoxColumn As DataGridViewTextBoxColumn
     Friend WithEvents CDmmDataGridViewTextBoxColumn As DataGridViewTextBoxColumn

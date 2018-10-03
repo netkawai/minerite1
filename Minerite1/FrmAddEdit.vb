@@ -99,7 +99,7 @@
 
             ' Refill the updated data
             ' TODO: Maybe I can add sort clause in SELECT query
-            tableAdapter.Fill(FrmMain.Minerite1DataSet.Un1)
+            FrmMain.RefillDataGridView()
 
         Catch ex As ArgumentException
         Catch ex As FormatException
