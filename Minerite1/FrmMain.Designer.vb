@@ -27,16 +27,16 @@ Partial Class FrmMain
         Me.BtnEdit = New System.Windows.Forms.Button()
         Me.BtnDelete = New System.Windows.Forms.Button()
         Me.DgvDataSheet = New System.Windows.Forms.DataGridView()
-        Me.Un1BindingSource = New System.Windows.Forms.BindingSource(Me.components)
-        Me.Minerite1DataSet = New Minerite1.Minerite1DataSet()
-        Me.Un1TableAdapter = New Minerite1.Minerite1DataSetTableAdapters.Un1TableAdapter()
-        Me.BtnPrint = New System.Windows.Forms.Button()
-        Me.BtnSave = New System.Windows.Forms.Button()
         Me.IdDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.CDinchDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.DVftDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.CDmmDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.DVmDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Un1BindingSource = New System.Windows.Forms.BindingSource(Me.components)
+        Me.Minerite1DataSet = New Minerite1.Minerite1DataSet()
+        Me.Un1TableAdapter = New Minerite1.Minerite1DataSetTableAdapters.Un1TableAdapter()
+        Me.BtnPrint = New System.Windows.Forms.Button()
+        Me.BtnSave = New System.Windows.Forms.Button()
         CType(Me.DgvDataSheet, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.Un1BindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.Minerite1DataSet, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -90,38 +90,6 @@ Partial Class FrmMain
         Me.DgvDataSheet.Size = New System.Drawing.Size(577, 335)
         Me.DgvDataSheet.TabIndex = 3
         '
-        'Un1BindingSource
-        '
-        Me.Un1BindingSource.DataMember = "Un1"
-        Me.Un1BindingSource.DataSource = Me.Minerite1DataSet
-        '
-        'Minerite1DataSet
-        '
-        Me.Minerite1DataSet.DataSetName = "Minerite1DataSet"
-        Me.Minerite1DataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema
-        '
-        'Un1TableAdapter
-        '
-        Me.Un1TableAdapter.ClearBeforeFill = True
-        '
-        'BtnPrint
-        '
-        Me.BtnPrint.Location = New System.Drawing.Point(12, 160)
-        Me.BtnPrint.Name = "BtnPrint"
-        Me.BtnPrint.Size = New System.Drawing.Size(75, 23)
-        Me.BtnPrint.TabIndex = 4
-        Me.BtnPrint.Text = "&PRINT..."
-        Me.BtnPrint.UseVisualStyleBackColor = True
-        '
-        'BtnSave
-        '
-        Me.BtnSave.Location = New System.Drawing.Point(13, 211)
-        Me.BtnSave.Name = "BtnSave"
-        Me.BtnSave.Size = New System.Drawing.Size(75, 23)
-        Me.BtnSave.TabIndex = 5
-        Me.BtnSave.Text = "&SAVE..."
-        Me.BtnSave.UseVisualStyleBackColor = True
-        '
         'IdDataGridViewTextBoxColumn
         '
         Me.IdDataGridViewTextBoxColumn.DataPropertyName = "Id"
@@ -157,6 +125,38 @@ Partial Class FrmMain
         Me.DVmDataGridViewTextBoxColumn.HeaderText = "DV_m"
         Me.DVmDataGridViewTextBoxColumn.Name = "DVmDataGridViewTextBoxColumn"
         Me.DVmDataGridViewTextBoxColumn.ReadOnly = True
+        '
+        'Un1BindingSource
+        '
+        Me.Un1BindingSource.DataMember = "Un1"
+        Me.Un1BindingSource.DataSource = Me.Minerite1DataSet
+        '
+        'Minerite1DataSet
+        '
+        Me.Minerite1DataSet.DataSetName = "Minerite1DataSet"
+        Me.Minerite1DataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema
+        '
+        'Un1TableAdapter
+        '
+        Me.Un1TableAdapter.ClearBeforeFill = True
+        '
+        'BtnPrint
+        '
+        Me.BtnPrint.Location = New System.Drawing.Point(12, 160)
+        Me.BtnPrint.Name = "BtnPrint"
+        Me.BtnPrint.Size = New System.Drawing.Size(75, 23)
+        Me.BtnPrint.TabIndex = 4
+        Me.BtnPrint.Text = "&PRINT..."
+        Me.BtnPrint.UseVisualStyleBackColor = True
+        '
+        'BtnSave
+        '
+        Me.BtnSave.Location = New System.Drawing.Point(13, 211)
+        Me.BtnSave.Name = "BtnSave"
+        Me.BtnSave.Size = New System.Drawing.Size(75, 23)
+        Me.BtnSave.TabIndex = 5
+        Me.BtnSave.Text = "&SAVE..."
+        Me.BtnSave.UseVisualStyleBackColor = True
         '
         'FrmMain
         '

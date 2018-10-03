@@ -1,13 +1,15 @@
 ﻿Imports System.Drawing.Printing
 
 Public Class PrintoutHelper
+    Implements IDisposable
+
     WithEvents PrintDoc As PrintDocument
     Private Dgv As DataGridView
-    Dim PageNo As Integer = 1
-    Dim NewPage As Boolean = True
+    Dim PageNo As Integer
+    Dim NewPage As Boolean
     Dim HeaderHeight As Integer
     Dim CellHeight As Integer
-    Dim RowPos As Integer = 0
+    Dim RowPos As Integer
     Dim ColumnLefts As New ArrayList()
     Dim ColumnWidths As New ArrayList()
     Dim RowsPerPage As Integer
@@ -20,6 +22,7 @@ Public Class PrintoutHelper
         Dgv = datagrid
     End Sub
 
+
     Public Sub PrintPreview()
         Using previewDialog = New PrintPreviewDialog()
             previewDialog.Document = PrintDoc
@@ -30,6 +33,7 @@ Public Class PrintoutHelper
     Private Sub ResetPrintParams()
         PageNo = 1
         RowPos = 0
+        RowsPerPage = 0
         NewPage = True
         ColumnLefts.Clear()
         ColumnWidths.Clear()
@@ -96,10 +100,12 @@ Public Class PrintoutHelper
                 For Each Cel As DataGridViewCell In GridRow.Cells
                     If Not Cel.OwningColumn.Visible Then Continue For
 
-                    e.Graphics.DrawString(Cel.Value.ToString(), Cel.InheritedStyle.Font, New SolidBrush(Cel.InheritedStyle.ForeColor), New RectangleF(CInt(ColumnLefts(i)), CSng(tmpTop), CInt(ColumnWidths(i)), CSng(CellHeight)), StringFormat.GenericTypographic)
-
-
-                    e.Graphics.DrawRectangle(Pens.Black, New Rectangle(CInt(ColumnLefts(i)), tmpTop, CInt(ColumnWidths(i)), CellHeight))
+                    e.Graphics.DrawString(Cel.Value.ToString(), Cel.InheritedStyle.Font,
+                                          New SolidBrush(Cel.InheritedStyle.ForeColor),
+                                          New RectangleF(CInt(ColumnLefts(i)), CSng(tmpTop), CInt(ColumnWidths(i)), CSng(CellHeight)),
+                                          StringFormat.GenericTypographic)
+                    e.Graphics.DrawRectangle(Pens.Black,
+                                             New Rectangle(CInt(ColumnLefts(i)), tmpTop, CInt(ColumnWidths(i)), CellHeight))
                     i += 1
                 Next
 
@@ -118,4 +124,10 @@ Public Class PrintoutHelper
         ResetPrintParams()
         e.HasMorePages = False
     End Sub
+
+    ' This code added by Visual Basic to correctly implement the disposable pattern.
+    Public Sub Dispose() Implements IDisposable.Dispose
+        PrintDoc.Dispose()
+    End Sub
+
 End Class

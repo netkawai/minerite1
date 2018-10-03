@@ -110,7 +110,12 @@
     End Sub
 
     Private Sub BtnPrint_Click(sender As Object, e As EventArgs) Handles BtnPrint.Click
-        Dim printHelper = New PrintoutHelper(Me.DgvDataSheet)
-        printHelper.PrintPreview()
+        Using printHelper = New PrintoutHelper(Me.DgvDataSheet)
+            printHelper.PrintPreview()
+        End Using
+    End Sub
+
+    Private Sub BtnSave_Click(sender As Object, e As EventArgs) Handles BtnSave.Click
+        SaveHelper.SaveToFile(DgvDataSheet)
     End Sub
 End Class

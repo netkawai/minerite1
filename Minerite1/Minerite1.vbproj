@@ -123,6 +123,7 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
     <Compile Include="PrintoutHelper.vb" />
+    <Compile Include="SaveHelper.vb" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="FrmAddEdit.resx">
