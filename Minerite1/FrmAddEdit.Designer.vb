@@ -41,7 +41,7 @@ Partial Class FrmAddEdit
         'CmbUnit
         '
         Me.CmbUnit.FormattingEnabled = True
-        Me.CmbUnit.Items.AddRange(New Object() {"Inch", "mm"})
+        Me.CmbUnit.Items.AddRange(New Object() {"inch", "mm"})
         Me.CmbUnit.Location = New System.Drawing.Point(143, 21)
         Me.CmbUnit.Name = "CmbUnit"
         Me.CmbUnit.Size = New System.Drawing.Size(102, 21)

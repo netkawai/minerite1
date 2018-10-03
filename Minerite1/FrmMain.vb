@@ -33,13 +33,15 @@
     End Sub
 
     Private Sub SelectAndJumpEditedRecord(ByVal selectedId As Integer)
+        If selectedId > 0 Then
 
+        End If
     End Sub
 
     Private Sub BtnAdd_Click(sender As Object, e As EventArgs) Handles BtnAdd.Click
         Using frm As New FrmAddEdit(0)
             ' Modaless Dialog to prevent the access to DataGridView during the new data input.
-            frm.ShowDialog()
+            frm.ShowDialog(Me)
             ' Here jump to a new record line
             SelectAndJumpEditedRecord(frm.SelectedRecordID)
         End Using
@@ -47,7 +49,7 @@
 
     Private Sub BtnEdit_Click(sender As Object, e As EventArgs) Handles BtnEdit.Click
         Using frm As New FrmAddEdit(SelectedId)
-            frm.ShowDialog()
+            frm.ShowDialog(Me)
         End Using
     End Sub
 

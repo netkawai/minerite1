@@ -1,7 +1,14 @@
 ﻿Public Class FrmAddEdit
 
     Private _selectedRecordID As Integer = 0
-    Private ParentMain As FrmMain = Me.ParentForm
+    Private FrmMain As FrmMain
+
+    Private Enum LengthUnit
+        INCH
+        MM
+    End Enum
+
+
 
     Public Property SelectedRecordID As Integer
         Get
@@ -18,23 +25,36 @@
 
         ' This call is required by the designer.
         InitializeComponent()
-
+        CmbUnit.SelectedIndex = 0
         SelectedRecordID = selectedId
 
+    End Sub
+
+    Private Sub FrmAddEdit_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        FrmMain = Me.Owner
         ' To open this form with selected row, that is Edit mode
-        If selectedId > 0 Then
-            If Me.CmbUnit.SelectedText.ToUpper = "INCH" Then
-                TbInput.Text = Me.ParentMain.DiameterInch
+        If SelectedRecordID > 0 Then
+            If Me.SelectedUnit = LengthUnit.INCH Then
+                TbInput.Text = Me.FrmMain.DiameterInch
             Else
-                TbInput.Text = Me.ParentMain.DiameterMM
+                TbInput.Text = Me.FrmMain.DiameterMM
             End If
         End If
+
     End Sub
+
+    Private Function SelectedUnit() As LengthUnit
+        If Me.CmbUnit.SelectedItem.ToUpper = "INCH" Then
+            Return LengthUnit.INCH
+        Else
+            Return LengthUnit.MM
+        End If
+    End Function
 
     Private Sub BtnUpdate_Click(sender As Object, e As EventArgs) Handles BtnUpdate.Click
 
         Const Inch_mm_ratio As Double = 25.4
-        Const foot_m_ratio As Double = 12
+        Const foot_m_ratio As Double = 0.305
 
         ' Validating input only positive numbers.
         ' Calculating detonation velocity
@@ -49,7 +69,7 @@
 
             Dim diameter_inch, diameter_mm, velocity_ft, velocity_m
             ' cacluation other unit
-            If Me.CmbUnit.SelectedText.ToUpper = "INCH" Then
+            If Me.SelectedUnit = LengthUnit.INCH Then
                 diameter_inch = diameter
                 diameter_mm = diameter_inch * Inch_mm_ratio
                 velocity_ft = velocity
@@ -62,7 +82,7 @@
             End If
 
             ' Call to save data
-            Dim tableAdapter = ParentMain.Un1TableAdapter
+            Dim tableAdapter = FrmMain.Un1TableAdapter
             If SelectedRecordID = 0 Then
                 ' With Output clause in Query, this Insert return the new inserted Id
                 SelectedRecordID = tableAdapter.Insert(diameter_inch, velocity_ft, diameter_mm, velocity_m)
@@ -71,7 +91,7 @@
             End If
 
             ' Refill the updated data
-            tableAdapter.Fill(ParentMain.DataDataSet.Un1)
+            tableAdapter.Fill(FrmMain.DataDataSet.Un1)
 
         Catch ex As ArgumentException
         Catch ex As FormatException
@@ -80,8 +100,8 @@
             Return
         Catch ex1 As Exception
             MessageBox.Show("Can not save data. Please check disk or network")
-            Return
         End Try
+        Me.Close()
     End Sub
 
     ''' <summary>
@@ -98,4 +118,8 @@
         Dim velocity = consA + consB * diameter + consC * Math.Exp(-1 * diameter)
         Return velocity
     End Function
+
+    Private Sub BtnCancel_Click(sender As Object, e As EventArgs) Handles BtnCancel.Click
+        Me.Close()
+    End Sub
 End Class
