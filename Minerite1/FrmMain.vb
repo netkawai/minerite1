@@ -25,13 +25,15 @@
 
 
     Private Sub FrmMain_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        'TODO: This line of code loads data into the 'Minerite1DataSet.Un1' table. You can move, or remove it, as needed.
+        Me.Un1TableAdapter.Fill(Me.Minerite1DataSet.Un1)
         RefillDataGridView()
     End Sub
 
     Private Sub RefillDataGridView()
         ' TODO: Rename database file name to Minerite1
         ' TODO: Rename dataDataSet name to  Minerite1DS
-        Me.Un1TableAdapter.Fill(Me.DataDataSet.Un1)
+        Me.Un1TableAdapter.Fill(Me.Minerite1DataSet.Un1)
     End Sub
 
     Private Sub SelectAndJumpEditedRecord(ByVal selectedId As Integer)

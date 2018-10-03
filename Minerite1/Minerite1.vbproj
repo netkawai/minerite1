@@ -95,14 +95,6 @@
     <Import Include="System.Threading.Tasks" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="dataDataSet.Designer.vb">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>dataDataSet.xsd</DependentUpon>
-    </Compile>
-    <Compile Include="dataDataSet.vb">
-      <DependentUpon>dataDataSet.xsd</DependentUpon>
-    </Compile>
     <Compile Include="FrmAddEdit.Designer.vb">
       <DependentUpon>FrmAddEdit.vb</DependentUpon>
     </Compile>
@@ -115,6 +107,11 @@
     <Compile Include="FrmMain.Designer.vb">
       <DependentUpon>FrmMain.vb</DependentUpon>
       <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Minerite1DataSet.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Minerite1DataSet.xsd</DependentUpon>
     </Compile>
     <Compile Include="My Project\AssemblyInfo.vb" />
     <Compile Include="My Project\Application.Designer.vb">
@@ -147,16 +144,16 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <None Include="dataDataSet.xsc">
-      <DependentUpon>dataDataSet.xsd</DependentUpon>
+    <None Include="Minerite1DataSet.xsc">
+      <DependentUpon>Minerite1DataSet.xsd</DependentUpon>
     </None>
-    <None Include="dataDataSet.xsd">
+    <None Include="Minerite1DataSet.xsd">
       <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>dataDataSet.Designer.vb</LastGenOutput>
+      <LastGenOutput>Minerite1DataSet.Designer.vb</LastGenOutput>
       <SubType>Designer</SubType>
     </None>
-    <None Include="dataDataSet.xss">
-      <DependentUpon>dataDataSet.xsd</DependentUpon>
+    <None Include="Minerite1DataSet.xss">
+      <DependentUpon>Minerite1DataSet.xsd</DependentUpon>
     </None>
     <None Include="My Project\Application.myapp">
       <Generator>MyApplicationCodeGenerator</Generator>
@@ -175,11 +172,11 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="data.mdf">
+    <Content Include="Minerite1.mdf">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="data_log.ldf">
-      <DependentUpon>data.mdf</DependentUpon>
+    <Content Include="Minerite1_log.ldf">
+      <DependentUpon>Minerite1.mdf</DependentUpon>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
