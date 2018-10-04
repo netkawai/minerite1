@@ -15,6 +15,7 @@ Public Class PrintoutHelper
     Private Const CellLeftPadding = 5
 
     Private Const CellHeightExtraPadding = CellTopPadding * 2
+    Private Const CellWidthExtraPadding = CellLeftPadding * 2
     ' Parameters for generating print image.
     Dim PageNo As Integer
     Dim NewPage As Boolean
@@ -36,10 +37,14 @@ Public Class PrintoutHelper
     End Sub
 
 
+    ''' <summary>
+    ''' Open Printpreview dialog
+    ''' </summary>
+    ''' <param name="frm"></param>
     Public Sub PrintPreview(ByRef frm As Form)
         Using previewDialog = New PrintPreviewDialog()
             previewDialog.Document = PrintDoc
-            previewDialog.ShowDialog(Me)
+            previewDialog.ShowDialog(frm)
         End Using
     End Sub
 
@@ -67,11 +72,12 @@ Public Class PrintoutHelper
         Dim tmpLeft = e.MarginBounds.Left
         Dim i As Integer
 
+        ' To calculate width in the fist page
         If PageNo = 1 Then
             For Each gridCol As DataGridViewColumn In Dgv.Columns
                 If Not gridCol.Visible Then Continue For
 
-                tmpWidth = gridCol.Width
+                tmpWidth = gridCol.Width + CellWidthExtraPadding
 
                 HeaderHeight = CInt((e.Graphics.MeasureString(gridCol.HeaderText, gridCol.InheritedStyle.Font, tmpWidth).Height)) + CellHeightExtraPadding
                 ColumnLefts.Add(tmpLeft)
@@ -80,6 +86,7 @@ Public Class PrintoutHelper
             Next
         End If
 
+        ' Print out the data
         While RowPos <= Dgv.Rows.Count - 1
             Dim GridRow As DataGridViewRow = Dgv.Rows(RowPos)
             CellHeight = GridRow.Height
@@ -95,12 +102,11 @@ Public Class PrintoutHelper
                     ' Print title
                     e.Graphics.DrawString(PrintTitle, New Font(Dgv.Font, FontStyle.Bold), Brushes.Black,
                                           e.MarginBounds.Left, e.MarginBounds.Top - e.Graphics.MeasureString(PrintTitle, New Font(Dgv.Font, FontStyle.Bold), e.MarginBounds.Width).Height - 13)
-
-                    Dim s As String = DateTime.Now.ToLongDateString() & " " + DateTime.Now.ToShortTimeString()
-
                     ' Print Date
+                    Dim s As String = DateTime.Now.ToLongDateString() & " " + DateTime.Now.ToShortTimeString()
                     e.Graphics.DrawString(s, New Font(Dgv.Font, FontStyle.Bold), Brushes.Black,
                                           e.MarginBounds.Left + (e.MarginBounds.Width - e.Graphics.MeasureString(s, New Font(Dgv.Font, FontStyle.Bold), e.MarginBounds.Width).Width), e.MarginBounds.Top - e.Graphics.MeasureString(PrintTitle, New Font(New Font(Dgv.Font, FontStyle.Bold), FontStyle.Bold), e.MarginBounds.Width).Height - 13)
+
 
                     tmpTop = e.MarginBounds.Top
                     i = 0
@@ -152,5 +158,4 @@ Public Class PrintoutHelper
     Public Sub Dispose() Implements IDisposable.Dispose
         PrintDoc.Dispose()
     End Sub
-
 End Class
