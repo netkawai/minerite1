@@ -41,7 +41,7 @@
 
     Private Property SelectedUnit() As LengthUnit
         Get
-            If Me.CmbUnit.SelectedItem.ToUpper = "INCH" Then
+            If Me.CmbUnit.SelectedIndex = 0 Then
                 Return LengthUnit.INCH
             Else
                 Return LengthUnit.MM
@@ -149,7 +149,7 @@
                 Throw New FormatException
             End If
 
-            If CmbUnit.SelectedIndex = 0 Then
+            If Me.SelectedUnit = LengthUnit.INCH Then
                 TbInput.Text = diameter / Inch_mm_ratio
             Else
                 TbInput.Text = diameter * Inch_mm_ratio
