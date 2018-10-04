@@ -1,10 +1,21 @@
 ﻿Imports System.Drawing.Printing
 
+' Implement IDisposable for PrintDocument
 Public Class PrintoutHelper
     Implements IDisposable
 
+    ' PrintDocument
     WithEvents PrintDoc As PrintDocument
+
+    ' DataGridView in FrmMain
     Private Dgv As DataGridView
+    ' Title
+    Private PrintTitle = "Un1 Produt Data Sheet"
+    Private Const CellTopPadding = 5
+    Private Const CellLeftPadding = 5
+
+    Private Const CellHeightExtraPadding = CellTopPadding * 2
+    ' Parameters for generating print image.
     Dim PageNo As Integer
     Dim NewPage As Boolean
     Dim HeaderHeight As Integer
@@ -14,22 +25,27 @@ Public Class PrintoutHelper
     Dim ColumnWidths As New ArrayList()
     Dim RowsPerPage As Integer
 
-    Dim PrintTitle = "Test preview"
-
-    Public Sub New(ByRef datagrid As DataGridView)
+    ''' <summary>
+    ''' Constructor
+    ''' </summary>
+    ''' <param name="datagrid"></param>
+    Public Sub New(ByRef dataGrid As DataGridView)
         PrintDoc = New PrintDocument
         ResetPrintParams()
-        Dgv = datagrid
+        Dgv = dataGrid
     End Sub
 
 
-    Public Sub PrintPreview()
+    Public Sub PrintPreview(ByRef frm As Form)
         Using previewDialog = New PrintPreviewDialog()
             previewDialog.Document = PrintDoc
-            previewDialog.ShowDialog()
+            previewDialog.ShowDialog(Me)
         End Using
     End Sub
 
+    ''' <summary>
+    ''' Reset page printing parameter
+    ''' </summary>
     Private Sub ResetPrintParams()
         PageNo = 1
         RowPos = 0
@@ -57,7 +73,7 @@ Public Class PrintoutHelper
 
                 tmpWidth = gridCol.Width
 
-                HeaderHeight = CInt((e.Graphics.MeasureString(gridCol.HeaderText, gridCol.InheritedStyle.Font, tmpWidth).Height)) + 11
+                HeaderHeight = CInt((e.Graphics.MeasureString(gridCol.HeaderText, gridCol.InheritedStyle.Font, tmpWidth).Height)) + CellHeightExtraPadding
                 ColumnLefts.Add(tmpLeft)
                 ColumnWidths.Add(tmpWidth)
                 tmpLeft += tmpWidth
@@ -66,28 +82,35 @@ Public Class PrintoutHelper
 
         While RowPos <= Dgv.Rows.Count - 1
             Dim GridRow As DataGridViewRow = Dgv.Rows(RowPos)
-
             CellHeight = GridRow.Height
 
+            ' No space, go to a next page
             If tmpTop + CellHeight >= e.MarginBounds.Height + e.MarginBounds.Top Then
-                ' DrawFooter(e, RowsPerPage)
                 NewPage = True
                 PageNo += 1
                 e.HasMorePages = True
                 Return
             Else
                 If NewPage Then
-                    e.Graphics.DrawString(PrintTitle, New Font(Dgv.Font, FontStyle.Bold), Brushes.Black, e.MarginBounds.Left, e.MarginBounds.Top - e.Graphics.MeasureString(PrintTitle, New Font(Dgv.Font, FontStyle.Bold), e.MarginBounds.Width).Height - 13)
+                    ' Print title
+                    e.Graphics.DrawString(PrintTitle, New Font(Dgv.Font, FontStyle.Bold), Brushes.Black,
+                                          e.MarginBounds.Left, e.MarginBounds.Top - e.Graphics.MeasureString(PrintTitle, New Font(Dgv.Font, FontStyle.Bold), e.MarginBounds.Width).Height - 13)
+
                     Dim s As String = DateTime.Now.ToLongDateString() & " " + DateTime.Now.ToShortTimeString()
-                    e.Graphics.DrawString(s, New Font(Dgv.Font, FontStyle.Bold), Brushes.Black, e.MarginBounds.Left + (e.MarginBounds.Width - e.Graphics.MeasureString(s, New Font(Dgv.Font, FontStyle.Bold), e.MarginBounds.Width).Width), e.MarginBounds.Top - e.Graphics.MeasureString(PrintTitle, New Font(New Font(Dgv.Font, FontStyle.Bold), FontStyle.Bold), e.MarginBounds.Width).Height - 13)
+
+                    ' Print Date
+                    e.Graphics.DrawString(s, New Font(Dgv.Font, FontStyle.Bold), Brushes.Black,
+                                          e.MarginBounds.Left + (e.MarginBounds.Width - e.Graphics.MeasureString(s, New Font(Dgv.Font, FontStyle.Bold), e.MarginBounds.Width).Width), e.MarginBounds.Top - e.Graphics.MeasureString(PrintTitle, New Font(New Font(Dgv.Font, FontStyle.Bold), FontStyle.Bold), e.MarginBounds.Width).Height - 13)
+
                     tmpTop = e.MarginBounds.Top
                     i = 0
-
+                    ' Print Column
                     For Each GridCol As DataGridViewColumn In Dgv.Columns
                         If Not GridCol.Visible Then Continue For
                         e.Graphics.FillRectangle(New SolidBrush(Color.LightGray), New Rectangle(CInt(ColumnLefts(i)), tmpTop, CInt(ColumnWidths(i)), HeaderHeight))
                         e.Graphics.DrawRectangle(Pens.Black, New Rectangle(CInt(ColumnLefts(i)), tmpTop, CInt(ColumnWidths(i)), HeaderHeight))
-                        e.Graphics.DrawString(GridCol.HeaderText, GridCol.InheritedStyle.Font, New SolidBrush(GridCol.InheritedStyle.ForeColor), New RectangleF(CInt(ColumnLefts(i)), tmpTop, CInt(ColumnWidths(i)), HeaderHeight), StringFormat.GenericTypographic)
+                        e.Graphics.DrawString(GridCol.HeaderText, GridCol.InheritedStyle.Font, New SolidBrush(GridCol.InheritedStyle.ForeColor),
+                                              New RectangleF(CInt(ColumnLefts(i)) + CellTopPadding, tmpTop + CellTopPadding, CInt(ColumnWidths(i)), HeaderHeight), StringFormat.GenericTypographic)
                         i += 1
                     Next
 
@@ -96,13 +119,13 @@ Public Class PrintoutHelper
                 End If
 
                 i = 0
-
+                ' Print Each Cell
                 For Each Cel As DataGridViewCell In GridRow.Cells
                     If Not Cel.OwningColumn.Visible Then Continue For
 
                     e.Graphics.DrawString(Cel.Value.ToString(), Cel.InheritedStyle.Font,
                                           New SolidBrush(Cel.InheritedStyle.ForeColor),
-                                          New RectangleF(CInt(ColumnLefts(i)), CSng(tmpTop), CInt(ColumnWidths(i)), CSng(CellHeight)),
+                                          New RectangleF(CInt(ColumnLefts(i)) + CellTopPadding, CSng(tmpTop) + CellTopPadding, CInt(ColumnWidths(i)), CSng(CellHeight)),
                                           StringFormat.GenericTypographic)
                     e.Graphics.DrawRectangle(Pens.Black,
                                              New Rectangle(CInt(ColumnLefts(i)), tmpTop, CInt(ColumnWidths(i)), CellHeight))

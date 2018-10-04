@@ -7,9 +7,8 @@ Public Class SaveHelper
 
     Public Shared Sub SaveToFile(ByRef Dgv As DataGridView)
         Using dialog = New SaveFileDialog
-
-            ' TODO: set file extension
-
+            dialog.Filter = "CSV|*.csv"
+            dialog.Title = "Save to csv"
             If dialog.ShowDialog = DialogResult.OK Then
                 Dim fstream As FileStream = dialog.OpenFile()
                 If fstream IsNot Nothing Then

@@ -23,6 +23,7 @@ Partial Class FrmMain
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
+        Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Me.BtnAdd = New System.Windows.Forms.Button()
         Me.BtnEdit = New System.Windows.Forms.Button()
         Me.BtnDelete = New System.Windows.Forms.Button()
@@ -86,6 +87,9 @@ Partial Class FrmMain
         Me.DgvDataSheet.MultiSelect = False
         Me.DgvDataSheet.Name = "DgvDataSheet"
         Me.DgvDataSheet.ReadOnly = True
+        DataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
+        DataGridViewCellStyle1.NullValue = Nothing
+        Me.DgvDataSheet.RowsDefaultCellStyle = DataGridViewCellStyle1
         Me.DgvDataSheet.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
         Me.DgvDataSheet.Size = New System.Drawing.Size(577, 335)
         Me.DgvDataSheet.TabIndex = 3
@@ -128,6 +132,7 @@ Partial Class FrmMain
         Me.IdDataGridViewTextBoxColumn.HeaderText = "Id"
         Me.IdDataGridViewTextBoxColumn.Name = "IdDataGridViewTextBoxColumn"
         Me.IdDataGridViewTextBoxColumn.ReadOnly = True
+        Me.IdDataGridViewTextBoxColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
         Me.IdDataGridViewTextBoxColumn.Visible = False
         '
         'CDinchDataGridViewTextBoxColumn
@@ -136,6 +141,7 @@ Partial Class FrmMain
         Me.CDinchDataGridViewTextBoxColumn.HeaderText = "Cartridge Diameter(inch)"
         Me.CDinchDataGridViewTextBoxColumn.Name = "CDinchDataGridViewTextBoxColumn"
         Me.CDinchDataGridViewTextBoxColumn.ReadOnly = True
+        Me.CDinchDataGridViewTextBoxColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
         '
         'DVftDataGridViewTextBoxColumn
         '
@@ -143,6 +149,7 @@ Partial Class FrmMain
         Me.DVftDataGridViewTextBoxColumn.HeaderText = "Detonation Velocity(ft/sec)"
         Me.DVftDataGridViewTextBoxColumn.Name = "DVftDataGridViewTextBoxColumn"
         Me.DVftDataGridViewTextBoxColumn.ReadOnly = True
+        Me.DVftDataGridViewTextBoxColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
         '
         'CDmmDataGridViewTextBoxColumn
         '
@@ -150,6 +157,7 @@ Partial Class FrmMain
         Me.CDmmDataGridViewTextBoxColumn.HeaderText = "Cartridge Diameter(mm)"
         Me.CDmmDataGridViewTextBoxColumn.Name = "CDmmDataGridViewTextBoxColumn"
         Me.CDmmDataGridViewTextBoxColumn.ReadOnly = True
+        Me.CDmmDataGridViewTextBoxColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
         '
         'DVmDataGridViewTextBoxColumn
         '
@@ -157,6 +165,7 @@ Partial Class FrmMain
         Me.DVmDataGridViewTextBoxColumn.HeaderText = "Detonation Velocity(m/sec)"
         Me.DVmDataGridViewTextBoxColumn.Name = "DVmDataGridViewTextBoxColumn"
         Me.DVmDataGridViewTextBoxColumn.ReadOnly = True
+        Me.DVmDataGridViewTextBoxColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
         '
         'FrmMain
         '
